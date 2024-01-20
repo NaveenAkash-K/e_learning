@@ -1,6 +1,7 @@
 import 'package:e_learning/data/module_data.dart';
 import 'package:e_learning/data/quiz_data.dart';
 import 'package:e_learning/page/quiz.dart';
+import 'package:e_learning/widgets/course_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -46,7 +47,8 @@ class _ModulePageState extends State<ModulePage> {
     color: Color.fromARGB(255, 48, 48, 48),
     // wordSpacing: 3,
   );
-
+  int index = 0;
+  int sectionindex = 0;
   @override
   Widget build(BuildContext context) {
     return Hero(
@@ -76,21 +78,51 @@ class _ModulePageState extends State<ModulePage> {
             children: [
               SizedBox(width: 20),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Check if the section index is greater than 0 to avoid going below 0
+                  if (sectionindex > 0) {
+                    // Decrement the section index
+
+                    --sectionindex;
+                    print(sectionindex);
+
+                    // Navigate to the previous section
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: ((BuildContext context) => ModulePage(
+                            title: module[index]['title'],
+                            appBarTitle: 'Module ${index + 2}',
+                            moduleData: module[index]['content'][sectionindex],
+                            heroTag: "courseTile$index",
+                          )),
+                    ));
+                    print('Back button clicked');
+                  }
+                },
                 icon: Icon(Icons.arrow_back_ios_new_rounded),
               ),
               Spacer(),
               Text("1/2"),
               Spacer(),
               IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: ((context) =>
-                          QuizPage(quizDataList: quizDataList)),
-                    ),
-                  );
-                },
+                onPressed: sectionindex < module[index]['content'].length
+                    ? () {
+                        // Update the section index
+
+                        ++sectionindex;
+                        print(sectionindex);
+
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((BuildContext context) => ModulePage(
+                                title: module[index]['title'],
+                                appBarTitle: 'Module ${index + 2}',
+                                moduleData: module[index]['content']
+                                    [sectionindex],
+                                heroTag: "courseTile$index",
+                              )),
+                        ));
+                        print('clicked');
+                      }
+                    : null, // Set onPressed to null to disable the button
                 icon: Icon(Icons.arrow_forward_ios_rounded),
               ),
               SizedBox(width: 20),
@@ -109,7 +141,7 @@ class _ModulePageState extends State<ModulePage> {
             child: Column(
               children: widget.moduleData.map((e) {
                 if (e is ImageContent) {
-                  return e.image;
+                  return e.build(context);
                 } else if (e is Heading) {
                   return Padding(
                     padding: EdgeInsets.fromLTRB(
@@ -125,9 +157,11 @@ class _ModulePageState extends State<ModulePage> {
                         30, e.topPadding, 30, e.bottomPadding),
                     child: Row(
                       children: [
-                        Text(
-                          e.text,
-                          style: subHeadingStyle,
+                        Expanded(
+                          child: Text(
+                            e.text,
+                            style: subHeadingStyle,
+                          ),
                         ),
                       ],
                     ),
@@ -153,6 +187,8 @@ class _ModulePageState extends State<ModulePage> {
                       textAlign: TextAlign.justify,
                     ),
                   );
+                } else if (e is TabularColumn) {
+                  return e.build(context);
                 }
                 return const SizedBox(height: 60);
               }).toList(),

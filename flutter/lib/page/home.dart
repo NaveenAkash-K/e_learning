@@ -110,10 +110,10 @@ class _HomePageState extends State<HomePage> {
                   return Hero(
                     tag: "courseTile$index",
                     child: CourseTile(
-                      title: "Shelf Analytics",
+                      title: module[index]['title'],
                       index: index + 1,
                       heroTag: "courseTile$index",
-                      moduleData: module1,
+                      moduleData: module[index]['content'][0],
                     ),
                   );
                 },
