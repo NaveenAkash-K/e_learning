@@ -28,7 +28,7 @@ class _QuizOptionsState extends State<QuizOptions> {
           child: Container(
             padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
             width: double.infinity,
-            // height: 55,
+            height: 70,
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 255, 221, 210),
               boxShadow: [
@@ -44,12 +44,12 @@ class _QuizOptionsState extends State<QuizOptions> {
             ),
             child: Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                SizedBox(
                   width: 258,
                   child: Text(
                     widget.options[0],
                     overflow: TextOverflow.fade,
+                    softWrap: true,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -79,7 +79,7 @@ class _QuizOptionsState extends State<QuizOptions> {
           child: Container(
             padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
             width: double.infinity,
-            // height: 55,
+            height: 70,
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 235, 221, 244),
               boxShadow: [
@@ -94,12 +94,12 @@ class _QuizOptionsState extends State<QuizOptions> {
             ),
             child: Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                SizedBox(
                   width: 258,
                   child: Text(
                     widget.options[1],
                     overflow: TextOverflow.fade,
+                    softWrap: true,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -129,7 +129,7 @@ class _QuizOptionsState extends State<QuizOptions> {
           child: Container(
             padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
             width: double.infinity,
-            // height: 55,
+            height: 70,
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 217, 240, 192),
               boxShadow: [
@@ -144,12 +144,12 @@ class _QuizOptionsState extends State<QuizOptions> {
             ),
             child: Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                SizedBox(
                   width: 258,
                   child: Text(
                     widget.options[2],
                     overflow: TextOverflow.fade,
+                    softWrap: true,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -179,7 +179,7 @@ class _QuizOptionsState extends State<QuizOptions> {
           child: Container(
             padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
             width: double.infinity,
-            // height: 55,
+            height: 70,
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 237, 246, 255),
               boxShadow: [
@@ -194,12 +194,12 @@ class _QuizOptionsState extends State<QuizOptions> {
             ),
             child: Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                SizedBox(
                   width: 258,
                   child: Text(
                     widget.options[3],
                     overflow: TextOverflow.fade,
+                    softWrap: true,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,

@@ -41,8 +41,8 @@ class ScorePage extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Card(
-              margin: const EdgeInsets.symmetric(
-                  horizontal: 16.0, vertical: 100.0),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 100.0),
               color: Colors.white,
               child: SizedBox(
                 height: MediaQuery.of(context).size.height *
@@ -143,13 +143,13 @@ class ScorePage extends StatelessWidget {
                         try {
                           var response = await http.get(Uri.parse(
                               "http://${dotenv.env["MY_IP"]}:3000/v1/api/certificate/Naveen Akash/SVCE/naveen.akash0904@gmail.com"));
-    
+
                           var responseData = jsonDecode(response.body);
-    
+
                           if (response.statusCode > 399) {
                             throw responseData["message"];
                           }
-                          
+
                           ScaffoldMessenger.of(context).clearSnackBars();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

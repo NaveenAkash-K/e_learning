@@ -79,15 +79,11 @@ class _QuizPageState extends State<QuizPage> {
         //   print(
         //       "QuestionIndex: ${element.questionIndex}, CorrectAnswer: ${element.correctAnswer}, SelectedAnswer: ${element.selectedAnswer}");
         // }
-        Navigator.pop(context);
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ScorePage(
-              score: score,
-              totalQuestions: widget.quizDataList.length,
-              isFinal: true,
-            ),
+                score: score, totalQuestions: widget.quizDataList.length),
           ),
         );
         return;
