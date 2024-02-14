@@ -110,4 +110,19 @@ router.post('/upload', upload.single('csvFile'),(req, res) => {
   
 });
 
+router.post("/adminLogin", (req, res)=>{
+  const { email, password } = req.body;
+  
+  const predefinedEmail = "abc@gmail.com";
+  const predefinedPassword = "123456";
+
+  if (email === predefinedEmail && password === predefinedPassword) {
+    const token = generateRandomToken();
+    res.status(200).json({ token });
+  } else {
+    res.status(401).json({ message: "Invalid credentials" });
+  }
+  
+});
+
 module.exports = router;
