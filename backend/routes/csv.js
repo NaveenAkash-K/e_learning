@@ -115,8 +115,8 @@ router.post("/upload", upload.single("csvFile"), (req, res) => {
 
 router.post("/adminLogin", (req, res) => {
   const { email, password } = req.body;
-  const predefinedEmail = "abc@gmail.com";
-  const predefinedPassword = "123456";
+  const predefinedEmail = "shobha.sv@cavinkare.com";
+  const predefinedPassword = "shobha#123";
 
   if (email === predefinedEmail && password === predefinedPassword) {
     res.status(200).json({ token:"SOIFVRNILUWILE84HOIWH34892HJI48HGVIUH" });
