@@ -49,3 +49,7 @@ flutter/*.env
 backend/*.env
 backend/node_modules
 backend/package-lock.json
+
+# csv
+csv/node_modules
+csv/package-lock.json
