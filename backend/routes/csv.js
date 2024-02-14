@@ -118,7 +118,7 @@ router.post("/adminLogin", (req, res) => {
   const predefinedEmail = "shobha.sv@cavinkare.com";
   const predefinedPassword = "shobha#123";
 
-  if (email === predefinedEmail && password === predefinedPassword) {
+  if (email.toLowerCase() === predefinedEmail && password === predefinedPassword) {
     res.status(200).json({ token:"SOIFVRNILUWILE84HOIWH34892HJI48HGVIUH" });
   } else {
     res.status(401).json({ message: "Invalid credentials" });
