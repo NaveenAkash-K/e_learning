@@ -3,8 +3,11 @@ const router = express.Router();
 const fs = require("fs");
 const PDFDocument = require("pdfkit");
 const nodemailer = require("nodemailer");
-//const axios = require("axios");
+const axios = require("axios");
 const User = require("../models/usermodel");
+const googleFonts = require("google-fonts");
+const fonts = require("google-fonts");
+const path = require("path");
 
 const transporter = nodemailer.createTransport({
   service: "Outlook365",
@@ -14,7 +17,6 @@ const transporter = nodemailer.createTransport({
   tls: {
     ciphers: "SSLv3",
     rejectUnauthorized: false,
-
   },
   auth: {
     user: process.env.EMAIL,
@@ -62,13 +64,16 @@ router.post("/caseStudy-data/:email/:module", async (req, res) => {
 });
 
 // Example usage
-const templateUrl ="https://raw.githubusercontent.com/NaveenAkash-K/e_learning/main/backend/template1.jpeg"
- // Replace with your template image URL
+const templateUrl =
+  "https://raw.githubusercontent.com/NaveenAkash-K/e_learning/main/backend/template1.jpeg";
+// Replace with your template image URL
+
+console.log(path.join(__dirname, "../MontserratR.ttf"));
 
 // Define the route to generate and serve the certificate
 router.get("/:userName/:college/:email", async (req, res) => {
   try {
-    const userName = req.params.userName;
+    const userName = req.params.userName.toUpperCase();
     const college = req.params.college;
     const email = req.params.email;
 
@@ -77,34 +82,47 @@ router.get("/:userName/:college/:email", async (req, res) => {
     // Fetch the image from the URL
     const response = await axios.get(templateUrl, {
       responseType: "arraybuffer",
-    }); 
-    
+    });
+
     const templateBuffer = Buffer.from(response.data);
 
     // Generate the certificate in-memory
     const pdfDoc = new PDFDocument({ layout: "landscape", size: "A4" });
 
-    const date= new Date();
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let month=date.getMonth();
-    let year=date.getFullYear();
-    let str=months[month]+","+year.toString();
+    const date = new Date();
+    const months = [
+      "JANUARY",
+      "FEBRUARY",
+      "MARCH",
+      "APRIL",
+      "MAY",
+      "JUNE",
+      "JULY",
+      "AUGUST",
+      "SEPTEMBER",
+      "OCTOBER",
+      "NOVEMBER",
+      "DECEMBER",
+    ];
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    let str = months[month] + ", " + year.toString();
 
     // Your certificate generation logic
     const templateWidth = 595.28;
     const templateHeight = 841.89;
     const yPos = (pdfDoc.page.height - templateHeight) / 2;
-    pdfDoc.image(templateUrl, 0, 0, { scale: 0.665 });
+    pdfDoc.image(templateBuffer, 0, 0, { scale: 0.665 });
     pdfDoc
-      .font("Helvetica-Bold")
-      .fontSize(25)
+      .font(path.join(__dirname, "../MontserratR.ttf"))
+      .fontSize(30)
       .fillColor("black")
       .text(userName, 100, 280, { align: "center" });
     pdfDoc
-      .font("Helvetica-Bold")
-      .fontSize(17)
+      .font(path.join(__dirname, "../MontserratR.ttf"))
+      .fontSize(13)
       .fillColor("black")
-      .text(str, 530, 362, { align: "center" });
+      .text(str, 532, 361, { align: "center" });
 
     // Convert the PDF document to a buffer
     const pdfBuffer = await new Promise((resolve, reject) => {
@@ -113,8 +131,6 @@ router.get("/:userName/:college/:email", async (req, res) => {
       pdfDoc.on("end", () => resolve(Buffer.concat(chunks)));
       pdfDoc.end();
     });
-    
-        
 
     // Create mail options with the PDF buffer
     const mailOptions = {

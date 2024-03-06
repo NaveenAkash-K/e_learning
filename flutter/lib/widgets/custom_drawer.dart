@@ -85,9 +85,9 @@ class CustomDrawer extends StatelessWidget {
 
               final Uri emailUri = Uri(
                 scheme: 'mailto',
-                path: 'ciacoordinator@cavinkare.com',
+                path: 'subashvelusamy10@gmail.com',
                 query: encodeQueryParameters(<String, String>{
-                  'subject': 'Query Support',
+                  'subject': '',
                   'body': 'Please post your queries here'
                 }),
               );

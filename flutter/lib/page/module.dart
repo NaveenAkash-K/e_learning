@@ -355,13 +355,6 @@ class _ModulePageState extends State<ModulePage> {
               });
             }
           } else if (details.primaryVelocity! < -300) {
-            if (!(sectionIndex + 1 == widget.moduleData.length)) {
-              setState(() {
-                sectionIndex++;
-              });
-              return;
-            }
-
             if (!(sectionIndex == widget.moduleData.length - 1)) {
               if (!prefs!.getBool("isQuiz1Finished")! &&
                   sectionIndex + 1 == widget.quiz1Page) {
