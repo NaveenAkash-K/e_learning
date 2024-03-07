@@ -117,12 +117,12 @@ router.get("/:userName/:college/:email", async (req, res) => {
       .font(path.join(__dirname, "../MontserratR.ttf"))
       .fontSize(30)
       .fillColor("black")
-      .text(userName, 95, 280, { align: "center" });
+      .text(userName, 65, 280, { align: "center" });
     pdfDoc
       .font(path.join(__dirname, "../MontserratR.ttf"))
       .fontSize(13)
       .fillColor("black")
-      .text(str, 535, 363, { align: "center" });
+      .text(str, 582, 365, { align: "center" });
 
     // Convert the PDF document to a buffer
     const pdfBuffer = await new Promise((resolve, reject) => {
