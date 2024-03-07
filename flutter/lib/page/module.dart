@@ -714,8 +714,8 @@ class _ModulePageState extends State<ModulePage> {
                 child: TextButton(
                   child: Text(currentData.url),
                   style: TextButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      onSurface: Colors.transparent),
+                    backgroundColor: Colors.transparent,
+                  ),
                   onPressed: () {
                     _launchURL(currentData.url);
                   },

@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       nop = prefs!.getInt("nop")!.toDouble();
-      isCaseStudyOpen = nop >= 100;
+      isCaseStudyOpen = nop >= 40;
     });
 
     int progress = 0;
