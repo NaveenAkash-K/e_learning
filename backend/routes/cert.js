@@ -110,7 +110,7 @@ router.get("/:userName/:college/:email", async (req, res) => {
 
     // Your certificate generation logic
     const templateWidth = 595.28;
-    const templateHeight = 841.89;
+    const templateHeight = 835.89;
     const yPos = (pdfDoc.page.height - templateHeight) / 2;
     pdfDoc.image(templateBuffer, 0, 0, { scale: 0.665 });
     pdfDoc
