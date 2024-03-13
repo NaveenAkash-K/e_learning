@@ -11,6 +11,7 @@ const moduleRoute = require("./routes/module");
 const app = express();
 const cors = require("cors");
 const helmet = require("helmet");
+const morgan = require("morgan");
 const csv = require("./routes/csv");
 
 app.use(helmet());
@@ -31,6 +32,8 @@ mongoose
   .catch((error) => {
     console.log("error");
   });
+
+app.use(morgan("combined"));
 
 //route configuration for user login
 app.use("/v1/api/user", user);
